@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 import Link from 'next/link';
 
 // Services
 import { getCategories } from '../../../services';
 
-const Categories = () => {
+const CategoriesWidget = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -27,4 +26,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoriesWidget;

@@ -1,5 +1,5 @@
 // Components
-import Header from '../commons/Header';
+import Header from '../common/Header';
 
 const Layout = ({ children }) => (
   <>
