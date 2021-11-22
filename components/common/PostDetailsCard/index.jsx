@@ -50,7 +50,7 @@ const PostDetailsCard = ({ post }) => {
           const children = typeObj.children.map((item, itemIndex) =>
             getContentFragment(itemIndex, item.text, item)
           );
-          return getContentFragment(index, children, typeObj.type);
+          return getContentFragment(index, children, typeObj, typeObj.type);
         })}
       </div>
     </div>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const getContentFragment = (index, text, obj, type) => {
   let modifiedText = text;
 
