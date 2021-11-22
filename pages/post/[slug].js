@@ -1,15 +1,14 @@
-import React from 'react';
-
 // Components
-import PostDetails from '../../components/common/PostDetails';
-import PostWidget from '../../components/common/PostWidget';
-import Categories from '../../components/common/CategoriesWidget';
+import PostDetails from '../../containers/PostDetails';
 
 // Services
 import { getPosts, getPostDetails } from '../../services';
 
-const PostDetails = () => {
-  return <div></div>;
-};
+export default function PostDetailsPage() {
+  return <PostDetails />;
+}
 
-export default PostDetails;
+export async function getStaticProps() {
+  // const posts = (await getPosts()) || [];
+  // return { props: { posts } };
+}
