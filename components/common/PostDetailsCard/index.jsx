@@ -1,5 +1,8 @@
 import moment from 'moment';
 
+// Helper Functions
+import { getContentFragment } from '../../../utils/helperFunction';
+
 const PostDetailsCard = ({ post }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
