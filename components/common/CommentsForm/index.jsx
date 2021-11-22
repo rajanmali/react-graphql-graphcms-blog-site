@@ -121,6 +121,7 @@ const CommentsForm = ({ slug }) => {
           type="button"
           onClick={handleCommentSubmission}
           className="transition duration-500 ease hover:bg-purple-500 inline-block bg-purple-400 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
+          disabled={isLoading}
         >
           {isLoading ? 'Submitting...' : 'Post Comment'}
         </button>
