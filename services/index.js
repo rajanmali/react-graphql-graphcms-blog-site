@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+import { graphqlAPI } from '../constants';
 
 export const getPosts = async () => {
   const query = gql`
@@ -16,6 +16,7 @@ export const getPosts = async () => {
                 url
               }
             }
+            id
             createdAt
             slug
             title
@@ -45,6 +46,7 @@ export const getRecentPosts = async () => {
       orderBy: createdAt_ASC
       last:3
     ) {
+            id
         title
         featuredImage {
           url
@@ -69,6 +71,7 @@ export const getSimilarPosts = async () => {
         }
         last: 3
       ) {
+        id
         title
         featuredImage {
           url
