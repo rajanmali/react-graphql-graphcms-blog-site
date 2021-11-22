@@ -1,6 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request';
 
-import { graphqlAPI } from '../../constants';
+import { graphqlAPI, graphcmsToken } from '../../constants';
 /** *************************************************************
  * Any file inside the folder pages/api is mapped to /api/* and  *
  * will be treated as an API endpoint instead of a page.         *
@@ -10,7 +10,7 @@ import { graphqlAPI } from '../../constants';
 export default async function commentSubmitHandler(req, res) {
   const graphQLClient = new GraphQLClient(graphqlAPI, {
     headers: {
-      authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+      authorization: `Bearer ${graphcmsToken}`,
     },
   });
 
@@ -34,7 +34,12 @@ export default async function commentSubmitHandler(req, res) {
     }
   `;
 
-  const result = await graphQLClient.request(query, req.body);
+  const result = await graphQLClient.request(query, {
+    name: req.body.name,
+    email: req.body.email,
+    comment: req.body.comment,
+    slug: req.body.slug,
+  });
 
   return res.status(200).send(result);
 }

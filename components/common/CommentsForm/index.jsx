@@ -1,19 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Services
+import { submitComment } from '../../../services';
+
 const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false);
   const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const commentEl = useRef();
   const nameEl = useRef();
   const emailEl = useRef();
   const storeDataEl = useRef();
 
+  useEffect(() => {
+    nameEl.current.value = window.localStorage.getItem('name');
+    emailEl.current.value = window.localStorage.getItem('email');
+  }, []);
+
   const handleCommentSubmission = (e) => {
     e.preventDefault();
 
     setError(false);
+    setIsLoading(true);
 
     const { value: comment } = commentEl.current;
     const { value: name } = nameEl.current;
@@ -22,24 +32,45 @@ const CommentsForm = ({ slug }) => {
 
     if (!comment || !name || !email) {
       setError(true);
+      setIsLoading(false);
+
       return;
     }
 
     const commentObj = { name, email, comment, slug };
 
     if (storeData) {
-      localStorage.setItem('name', name);
-      localStorage.setItem('email', email);
+      window.localStorage.setItem('name', name);
+      window.localStorage.setItem('email', email);
     } else {
-      localStorage.removeItem('name');
-      localStorage.removeItem('email');
+      window.localStorage.removeItem('name');
+      window.localStorage.removeItem('email');
     }
+
+    submitComment(commentObj)
+      .then((res) => {
+        setIsLoading(false);
+        setShowSuccessMessage(true);
+
+        nameEl.current.value = '';
+        emailEl.current.value = '';
+        commentEl.current.value = '';
+
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+
+        console.log(err);
+      });
   };
 
   return (
     <div className="bg-white shodow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">
-        Add your comment
+        Leave a reply
       </h3>
       <div className="grid grid-cols gap-4 mb-4">
         <textarea
@@ -91,7 +122,7 @@ const CommentsForm = ({ slug }) => {
           onClick={handleCommentSubmission}
           className="transition duration-500 ease hover:bg-purple-500 inline-block bg-purple-400 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
         >
-          Post Comment
+          {isLoading ? 'Submitting...' : 'Post Comment'}
         </button>
         {showSuccessMessage && (
           <span className="text-xl float-right font-semibold mt-3 text-green-400">
