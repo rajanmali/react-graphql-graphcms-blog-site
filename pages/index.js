@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
 // Components
-import PostCard from '../components/PostCard';
-import PostWidget from '../components/PostWidget';
-import Categories from '../components/Categories';
+import PostCard from '../components/commons/PostCard';
+import PostWidget from '../components/commons/PostWidget';
+import Categories from '../components/commons/Categories';
 
 // Services
 import { getPosts } from '../services';

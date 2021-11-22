@@ -3,7 +3,7 @@ import moment from 'moment';
 import Link from 'next/link';
 
 // Services
-import { getRecentPosts, getSimilarPosts } from '../../services';
+import { getRecentPosts, getSimilarPosts } from '../../../services';
 
 const PostWidget = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -31,7 +31,7 @@ const PostWidget = ({ categories, slug }) => {
             <img
               alt={post.title}
               height="60px"
-              width="60px"
+              width="auto"
               className="align-middle rounded-full"
               src={post.featuredImage.url}
             />

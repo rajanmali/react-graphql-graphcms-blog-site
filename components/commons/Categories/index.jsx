@@ -3,7 +3,7 @@ import moment from 'moment';
 import Link from 'next/link';
 
 // Services
-import { getCategories } from '../../services';
+import { getCategories } from '../../../services';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
