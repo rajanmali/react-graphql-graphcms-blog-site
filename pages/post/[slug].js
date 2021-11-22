@@ -30,10 +30,10 @@ export default function PostDetailsPage() {
   );
 }
 
-// export async function getStaticProps() {
-//   // const posts = (await getPosts()) || [];
-//   // return { props: { posts } };
-// }
+export async function getStaticProps({ params }) {
+  const posts = (await getPosts()) || [];
+  return { props: { posts } };
+}
 
 // export async function getStaticPaths() {
 //   return {

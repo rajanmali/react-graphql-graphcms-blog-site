@@ -4,7 +4,7 @@ import { graphqlAPI } from '../constants';
 
 export const getPosts = async () => {
   const query = gql`
-    query getAllPosts {
+    query GetAllPosts {
       postsConnection {
         edges {
           node {
@@ -59,6 +59,42 @@ export const getRecentPosts = async () => {
   const result = await request(graphqlAPI, query);
 
   return result.posts;
+};
+
+export const getPostDetails = async () => {
+  const query = gql`
+    query GetPostDetails($slug: String!) {
+      post(where: { slug: $slug }) {
+        author {
+          bio
+          name
+          id
+          photo {
+            url
+          }
+        }
+        id
+        createdAt
+        slug
+        title
+        excerpt
+        featuredImage {
+          url
+        }
+        categories {
+          name
+          slug
+        }
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { slug });
+
+  return result.post;
 };
 
 export const getSimilarPosts = async () => {
