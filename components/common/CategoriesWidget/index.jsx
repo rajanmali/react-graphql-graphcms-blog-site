@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import Link from 'next/link';
 
 // Services
@@ -31,4 +31,4 @@ const CategoriesWidget = () => {
   );
 };
 
-export default CategoriesWidget;
+export default memo(CategoriesWidget);

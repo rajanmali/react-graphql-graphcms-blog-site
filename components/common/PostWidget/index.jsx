@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 
@@ -50,4 +50,4 @@ const PostWidget = ({ categories, slug }) => {
   );
 };
 
-export default PostWidget;
+export default memo(PostWidget);
