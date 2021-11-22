@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 // Components
 import PostDetailsCard from '../../components/common/PostDetailsCard';
@@ -7,11 +8,18 @@ import CommentsForm from '../../components/common/CommentsForm';
 import Comments from '../../components/common/Comments';
 import PostWidget from '../../components/common/PostWidget';
 import CategoriesWidget from '../../components/common/CategoriesWidget';
+import Loader from '../../components/common/Loader';
 
 // Services
 import { getPosts, getPostDetails } from '../../services';
 
 export default function PostDetailsPage({ post }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
+
   return (
     <>
       <Head>
