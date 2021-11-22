@@ -3,15 +3,17 @@ import Link from 'next/link';
 
 const PostCard = ({ post }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+    <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8 hover:shadow-2xl transition duration-200 cursor-pointer hover:text-purple-500">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
-        <img
-          src={post.featuredImage.url}
-          alt={post.title}
-          className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
-        />
+        <Link href={`/post/${post.slug}`}>
+          <img
+            src={post.featuredImage.url}
+            alt={post.title}
+            className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg hover:scale-105 transition duration-500"
+          />
+        </Link>
       </div>
-      <h1 className="transition duration-300 text-center mb-8 cursor-pointer hover:text-purple-500 text-3xl font-semibold">
+      <h1 className="text-center mb-8 text-3xl font-semibold">
         <Link href={`/post/${post.slug}`}>{post.title}</Link>
       </h1>
       <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
