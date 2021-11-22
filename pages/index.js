@@ -1,5 +1,10 @@
 import Head from 'next/head';
 
+// Components
+import PostCard from '../components/PostCard';
+import PostWidget from '../components/PostWidget';
+import Categories from '../components/Categories';
+
 const posts = [
   { title: 'React Testing', excerpt: 'Learn react testing' },
   { title: 'React w/ Tailwind', excerpt: 'Learn react w/ Tailwind' },
@@ -18,15 +23,15 @@ export default function Home() {
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts.map((post, index) => (
-            <div key={post + index}>
-              {post.title}
-              {post.excerpt}
-            </div>
+          {posts.map((post) => (
+            <PostCard post={post} key={post.title} />
           ))}
         </div>
         <div className="lg:col-span-4 col-span-1">
-          <div className="lg: sticky relative top-8"></div>
+          <div className="lg: sticky relative top-8">
+            <PostWidget />
+            <Categories />
+          </div>
         </div>
       </div>
     </div>
